@@ -10,7 +10,7 @@
 
 
 #Create a variable pointing to the data file
-file_name = './data/raw/Sara.txt'
+file_name = 'data/raw/Sara.txt'
 
 #Create a file object from the file variable
 file_object = open(file_name,'r') # r means read
@@ -21,6 +21,10 @@ line_list = file_object.readlines()
 #Close the file
 file_object.close()
 
+# initialize dictionaries
+date_dict = {}
+location_dict = {}
+
 #Pretend we read one line of data from the file
 for lineString in line_list:
     # Check if line is a data line
@@ -28,7 +32,7 @@ for lineString in line_list:
         continue
 
     #Split the string into a list of data items
-    lineData = lineString.split()
+    lineData = lineString.split('\t')
 
     #Extract items in list into variables
     record_id = lineData[0]
@@ -37,5 +41,10 @@ for lineString in line_list:
     obs_lat = lineData[6]
     obs_lon = lineData[7]
 
+    #Add items to dictionaries
+    date_dict[record_id] = obs_date
+    location_dict[record_id] = obs_lc
+
     #Print the location of sara
-    print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat},lon:{obs_lon} on {obs_date}")
+    #print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat},lon:{obs_lon} on {obs_date}")
+
